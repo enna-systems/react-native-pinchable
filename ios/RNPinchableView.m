@@ -53,7 +53,7 @@ UIView *backgroundView;
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-  if (isActive) {
+  if (isActive || _maximumZoomScale == 1) {
     return NO;
   }
   UIView *view = gestureRecognizer.view;
