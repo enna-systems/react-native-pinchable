@@ -48,6 +48,11 @@ public class PinchableView extends ReactViewGroup implements OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        // If maxScale is 1, we don't want to allow pinch zooming
+        // enna COMP: in combination with Lightbox double tap zooming there are some bugs when zoomed in
+        if (maxScale == 1) {
+            return true;
+        }
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_POINTER_DOWN:
                 if (!active && event.getPointerCount() >= 2) {
